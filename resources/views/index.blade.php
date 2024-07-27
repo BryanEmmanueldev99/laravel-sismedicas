@@ -1,0 +1,1 @@
+<?php echo "El silencio es oro";  ?>

@@ -1,0 +1,23 @@
+/** configuracion elementos **/
+.content-wrapper {
+    background-color: ghostwhite;
+}
+p, b {
+     margin: 0 !important;
+}
+.red-icon, .red{
+    color: #d61b1b;
+}
+
+.d-flex-wc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.d-flex-wc p{
+    color: #756f6f;
+}
+tbody{
+    text-align: center !important;
+}
+
