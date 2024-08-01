@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('genero_paciente',250);
             $table->string('celular_paciente')->nullable();
             $table->string('correo_paciente', 250)->nullable()->unique();
-            $table->string('dirrecion_paciente');
+            $table->string('dirrecion_paciente')->nullable();
             $table->string('peso_paciente')->nullable();
             $table->string('alergias_paciente')->nullable();
             $table->string('observaciones_paciente')->nullable();

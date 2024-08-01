@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-      /*  User::create([
+      User::create([
             'name' => 'Soporte técnico',
             'email' => 'supportweb@gmail.com',
             'password' => Hash::make('cristosalva')
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'paciente julia',
             'email' => 'julia@gmail.com',
             'password' => Hash::make('12345678')
-        ]);*/
+        ]);
         
 
         //se ejecutara cada Seeder que se llame con el comando php artisan db:seed 
