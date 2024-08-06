@@ -110,14 +110,18 @@ class ConsultorioController extends Controller
         return redirect()->route('admin.consultorios.index')->with('status', 'Consultorio actualizado')->with('icono', 'success');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function viewdelete($id) {
+           $consultorio = Consultorio::findOrFail($id);
+           return view('admin.consultorios.delete', compact('consultorio'));
+    }
+
+
     public function destroy($id)
     {
-        //
+        $consultorio = Consultorio::find($id);
+        $consultorio->delete();
+
+        return redirect()->route('admin.consultorios.index')->with('status', 'Consultorio eliminado')->with('icono', 'success');
     }
 }
