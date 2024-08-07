@@ -217,6 +217,30 @@ Inicio documento del HTML.
               </li>
             </ul>
           </li>
+          <!-- Modulo consultorios -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas bi bi-people-fill"></i>
+              <p>
+                doctores
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/doctores')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listado de doctores</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin/doctores/create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Agregar consultorio</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
 
           <li class="nav-item">

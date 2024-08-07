@@ -45,4 +45,9 @@ class User extends Authenticatable
     public function secretarias(){
         return $this->hasMany(Secretaria::class);
     }
+
+
+    public function doctores() {
+         return $this->hasOne(Doctor::class);
+    }
 }

@@ -24,4 +24,8 @@ class Doctor extends Model
     public function horarios() {
         return $this->hasMany(Horario::class);
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

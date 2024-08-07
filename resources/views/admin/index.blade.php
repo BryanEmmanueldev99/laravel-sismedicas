@@ -21,7 +21,7 @@
       </div>
 
       <span>Total secretarias:  {{$total_secretarias}}</span>
-      <br><span>Total pacientes:  {{$total_secretarias}}</span>
+      <br><span>Total pacientes:  {{$total_pacientes}}</span>
    </div>
 
   
