@@ -12,7 +12,8 @@ class Horario extends Model
            'dia_horario',
            'hora_inicio_horario',
            'hora_fin_horario',
-           'doctor_id'
+           'doctor_id',
+           'consultorio_id'
     ];
 
     public function doctor() {

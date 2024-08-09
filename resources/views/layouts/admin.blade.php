@@ -241,6 +241,30 @@ Inicio documento del HTML.
               </li>
             </ul>
           </li>
+          <!-- Modulo horarios -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas bi bi-people-fill"></i>
+              <p>
+                horarios
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/horarios')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listado de horarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin/horarios/create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Agregar Horario</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
 
           <li class="nav-item">
