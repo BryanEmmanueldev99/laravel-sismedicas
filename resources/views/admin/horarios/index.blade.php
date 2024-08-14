@@ -78,6 +78,63 @@
             </table>
           </div>
           
+
+          <div
+            class="table-responsive"
+          >
+            <table
+               class="table table-bordered table-striped dataTable dtr-inline shadow-sm rounded bg-white"
+            >
+               <thead>
+                  <tr>
+                     <th scope="col">Horario<th>
+                     <th scope="col">Lunes</th>
+                     <th scope="col">Martes</th>
+                     <th scope="col">Miercoles</th>
+                     <th scope="col">Jueves</th>
+                     <th scope="col">Viernes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  @php
+                  $horas = ['8:00:00 - 9:00:00','9:00:00 - 10:00:00','10:00:00 - 11:00:00','11:00:00 - 12:00:00','12:00:00 - 13:00:00','13:00:00 - 14:00:00', '14:00:00 - 15:00:00', '15:00:00 - 16:00:00', '16:00:00 - 17:00:00', '17:00:00 - 18:00:00', '18:00:00 - 19:00:00', '19:00:00 - 20:00:00'];
+   
+                  $dias_semana = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sábado','Domingo'];
+             @endphp
+             @foreach ($horas as $hora)
+                  @php
+                     list($hora_inicio,$hora_fin) = explode(' - ',$hora);
+                  @endphp
+                  <tr class="">
+                     <td scope="row">{{$hora}}</td>
+                     @foreach ($dias_semana as $dia)
+                        @php
+                           $medico = '';
+                           @foreach ($horario as $horario)
+                                 if(strtoupper ($horario->dia) == $dia && $hora_inicio >= $hora->hora_inicio){
+                                    
+                                 }
+                                     
+
+                                    /*
+                                       <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                                    */
+                                 
+                           @endforeach
+                        @endphp
+                     @endforeach
+                  </tr>
+
+               @endforeach
+               </tbody>
+            </table>
+          </div>
+          
       </div>
    </div>
 
