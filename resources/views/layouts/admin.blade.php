@@ -312,9 +312,29 @@ Inicio documento del HTML.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
 <!-- jQuery -->
 <script src=" {{url('plugins/jquery/jquery.min.js')}} "></script>
+<script>
+  $('#consultorio_select').on('change',function() {
+              const consultorio_id = $('#consultorio_select').val();
+               if(consultorio_id) {
+                  $.ajax({
+                       url: "{{ url('/admin/horarios/consultorios') }}" + '/' + consultorio_id,
+                       type:'GET',
+                       success:function(data) {
+                            $('#consultorio_info').html(data);
+                       },
+                       error: function() {
+                             alert("Error al obtener el consultorio");
+                       }
+                  });
+               }else{
+                $('#consultorio_info').html('');
+               }
+  });
+</script>
+
+
 <!-- Bootstrap 4 -->
 <script src=" {{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}} "></script>
 

@@ -9,11 +9,15 @@ use Illuminate\Http\Request;
 
 class HorarioController extends Controller
 {
+    public function recuerar_consultorios($id) {
+          echo $id;
+    }
     
     public function index()
     {
         $horarios = Horario::with('doctor','consultorio')->get();
-        return view('admin.horarios.index', compact('horarios'));
+        $listado_de_consultorios = Consultorio::all();
+        return view('admin.horarios.index', compact('horarios','listado_de_consultorios'));
     }
 
     /**
@@ -23,9 +27,11 @@ class HorarioController extends Controller
      */
     public function create()
     {
+   
         $doctores = Doctor::all();
         $consultorios = Consultorio::all();
-        return view('admin.horarios.create', compact('doctores','consultorios'));
+        $horarios = Horario::with('doctor','consultorio')->get();
+        return view('admin.horarios.create', compact('doctores','consultorios','horarios'));
     }
 
     /**
@@ -36,6 +42,30 @@ class HorarioController extends Controller
      */
     public function store(Request $request)
     {
+         //request
+         $request->validate([
+              'dia_horario' => 'required' ,
+              'hora_inicio_horario' => 'required|date_format:H:i',
+              'hora_fin_horario' => 'required|date_format:H:i|after:hora_inicio_horario',
+         ]);
+
+         //valida los horarios
+         $HorarioYaExistente = Horario::where('dia_horario',$request->dia_horario)->where(function ($query) use ($request) {
+              $query->where(function ($query) use ($request){
+                     $query->where('hora_inicio_horario','>=',$request->hora_inicio_horario)->where('hora_inicio_horario','<',$request->hora_fin_horario);
+              })
+              ->orWhere(function ($query) use ($request) {
+                $query->where('hora_fin_horario','>',$request->hora_inicio_horario)->where('hora_fin_horario','<=',$request->hora_fin_horario);
+              })
+              ->orWhere(function ($query) use ($request) {
+                $query->where('hora_inicio_horario','<',$request->hora_inicio_horario)->where('hora_fin_horario','>',$request->hora_fin_horario);
+              });
+         })->exists();
+
+         if($HorarioYaExistente){
+             return redirect()->back()->withInput()->with('status', 'El horario ya existe, prueba con otro')->with('icono', 'error');
+         }
+
         $data = request()->all();
         //return response()->json($data);
 
