@@ -10,11 +10,20 @@ use Illuminate\Http\Request;
 class HorarioController extends Controller
 {
     public function recuerar_consultorios($id) {
-          echo $id;
+           try {
+            
+            $horarios = Horario::with('doctor','consultorio')->where('consultorio_id',$id)->get();
+            return view('admin.horarios.cargar_consultorio', compact('horarios'));
+           } catch (\Exception $e) {
+                 return response()->json([
+                     'mensaje' => 'error'
+                 ]);
+           }
     }
     
     public function index()
     {
+        
         $horarios = Horario::with('doctor','consultorio')->get();
         $listado_de_consultorios = Consultorio::all();
         return view('admin.horarios.index', compact('horarios','listado_de_consultorios'));

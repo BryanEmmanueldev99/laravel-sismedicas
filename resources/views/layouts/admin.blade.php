@@ -25,8 +25,11 @@ Inicio documento del HTML.
 <link rel="stylesheet" href="{{url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
+  
   <!--sweetalert-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- jQuery -->
+  <script src=" {{url('plugins/jquery/jquery.min.js')}} "></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -303,7 +306,7 @@ Inicio documento del HTML.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      Algo
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2014-2021 <a href="#">Hecho por Bryan Emmanuel</a>.</strong> Todos los derechos reservados.
@@ -312,32 +315,8 @@ Inicio documento del HTML.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src=" {{url('plugins/jquery/jquery.min.js')}} "></script>
-<script>
-  $('#consultorio_select').on('change',function() {
-              const consultorio_id = $('#consultorio_select').val();
-               if(consultorio_id) {
-                  $.ajax({
-                       url: "{{ url('/admin/horarios/consultorios') }}" + '/' + consultorio_id,
-                       type:'GET',
-                       success:function(data) {
-                            $('#consultorio_info').html(data);
-                       },
-                       error: function() {
-                             alert("Error al obtener el consultorio");
-                       }
-                  });
-               }else{
-                $('#consultorio_info').html('');
-               }
-  });
-</script>
-
-
 <!-- Bootstrap 4 -->
 <script src=" {{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}} "></script>
-
 <!--Data table-->
 <script src="{{url('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -355,57 +334,5 @@ Inicio documento del HTML.
 <!-- AdminLTE App -->
 <script src=" {{url('dist/js/adminlte.min.js')}} "></script>
 
-<script>
-  $(function () {
-      $("#example1").DataTable({
-          "pageLength": 10,
-          "language": {
-              "emptyTable": "No hay información",
-              "info": "Mostrando inicio a fin del TOTAL Usuarios",
-              "infoEmpty": "Mostrando 0 a 0 de 0 Usuarios",
-              "infoFiltered": "(Filtrado de MAX total Usuarios)",
-              "infoPostFix": "",
-              "thousands": ",",
-              "lengthMenu": "Todos los usuarios",
-              "loadingRecords": "Cargando...",
-              "processing": "Procesando...",
-              "search": "Buscador:",
-              "zeroRecords": "Sin resultados encontrados",
-              "paginate": {
-                  "first": "Primero",
-                  "last": "Ultimo",
-                  "next": "Siguiente",
-                  "previous": "Anterior"
-              }
-          },
-          "responsive": true, "lengthChange": true, "autoWidth": false,
-          buttons: [{
-              extend: 'collection',
-              text: 'Reportes',
-              orientation: 'landscape',
-              buttons: [{
-                  text: 'Copiar',
-                  extend: 'copy',
-              }, {
-                  extend: 'pdf'
-              },{
-                  extend: 'csv'
-              },{
-                  extend: 'excel'
-              },{
-                  text: 'Imprimir',
-                  extend: 'print'
-              }
-              ]
-          },
-              {
-                  extend: 'colvis',
-                  text: 'Visor de columnas',
-                  collectionLayout: 'fixed three-column'
-              }
-          ],
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  });
-</script>
 </body>
 </html>
