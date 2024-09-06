@@ -16,7 +16,6 @@
 });
                </script>
           @endif
-
       <div class="row">
 
       <div class="mt-4 col-md-3">
@@ -25,19 +24,16 @@
             @csrf
             <div class="mb-3">
                 <label for="" class="form-label">Dia: <b class="red">*</b></label>
-                <input
-                    type="text"
-                    class="form-control"
-                    name="dia_horario"
-                    
-                    placeholder=horario         
-                    value="{{old('dia_horario')}}"
-                />
-                
-                @error('dia_horario')
-                  <small class="red">{{$message}}</small>
-                @enderror
-              </div>
+                <select class="form-control" name="dia_horario" id="">
+                <?php
+                  $dias_semana = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sábado','Domingo'];
+                  foreach ($dias_semana as $row)  : ?>
+                    <option value="{{$row}}">
+                            {{$row}}
+                    </option>
+                  <?php endforeach; ?>   
+                </select>
+            </div>
 
               <div class="mb-3">
                 <label class="form-label">hora_inicio_horario	: <b class="red">*</b></label>

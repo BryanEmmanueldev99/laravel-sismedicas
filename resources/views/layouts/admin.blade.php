@@ -287,7 +287,7 @@ Inicio documento del HTML.
 
   <!--main contenido modificacion-->
   <div class="content-wrapper">
-      <div class="container p-4">
+      <div class="container p-4" id="root">
          @yield('content')
       </div>
   </div>
@@ -306,16 +306,18 @@ Inicio documento del HTML.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Algo
+        <a href="#">Algun enlace por aqui</a>
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2014-2021 <a href="#">Hecho por Bryan Emmanuel</a>.</strong> Todos los derechos reservados.
   </footer>
+  
 </div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 <!-- Bootstrap 4 -->
+
 <script src=" {{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}} "></script>
 <!--Data table-->
 <script src="{{url('plugins/datatables/jquery.dataTables.min.js')}}"></script>

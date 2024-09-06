@@ -37,7 +37,7 @@
                         @php
                            $medico = '';
                             foreach ($horarios as $horario)
-                                 if($horario->dia_horario == $dia && $hora_inicio >= $horario->hora_inicio_horario && $hora_fin <= $horario->hora_fin_horario ){      
+                                 if($horario->dia_horario == $dia && $hora_inicio >= $horario->hora_inicio_horario && $hora_fin <= $horario->hora_fin_horario){      
                                     $medico = $horario->doctor->nombre_doctor." ".$horario->doctor->apellidos_doctor." - ".$horario->consultorio->nombre_consultorio;
                                     break;
                                  }       
