@@ -21,3 +21,23 @@ tbody{
     text-align: center !important;
 }
 
+/*style contenedor app login*/
+div#app {
+    height: 100vh !important;
+    background-color: #fafafa;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-white-primary{
+    background-color: #fff;
+}
+
+
+.elevation-3 {
+    box-shadow: 0 10px 20px rgba(163, 163, 163, 0.19), 0 6px 6px rgba(85, 82, 82, 0.23) !important;
+}
+
+
+
