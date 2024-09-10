@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--
 Inicio documento del HTML.
@@ -93,7 +92,7 @@ Inicio documento del HTML.
   <aside class="main-sidebar sidebar-white-primary elevation-3">
     <!-- Brand Logo -->
     <a href="{{url('/admin')}}" class="brand-link text-center">
-      <img src="{{asset('dist/img/jesus_medico_logo.png')}}" alt="AdminLTE Logo" width="60px">
+      <img src="{{asset('dist/img/jesus_medico_logo.png')}}" alt="Jesus Médico" width="60px">
       {{-- <b class="brand-text">Jesus Médico</b> --}}
     </a>
 
@@ -105,7 +104,7 @@ Inicio documento del HTML.
           <img src="{{url('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{url('/admin')}}" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{url('/admin')}}" class="d-block">{{ Auth::user()->email }}</a>
         </div>
       </div>
 
@@ -275,7 +274,7 @@ Inicio documento del HTML.
                                                      document.getElementById('logout-form').submit();" class="nav-link">
               <i class="nav-icon fas bi bi-door-closed-fill"></i>
               <p>
-                {{ __('Logout') }}
+                {{ __('Cerrar sesión') }}
               </p>
             </a>
 
