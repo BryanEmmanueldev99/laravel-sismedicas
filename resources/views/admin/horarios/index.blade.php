@@ -77,6 +77,18 @@
                
             </table>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+         
           
 
           
@@ -100,6 +112,7 @@
       $('#consultorio_select').on('change',function() {
                   const consultorio_id = $('#consultorio_select').val();
                    if(consultorio_id) {
+                     //alert(consultorio_id)
                       $.ajax({
                            url: "{{ url('/admin/horarios/consultorios') }}" + '/' + consultorio_id,
                            type:'GET',

@@ -105,6 +105,7 @@ class DatabaseSeeder extends Seeder
     Permission::create(['name' => 'admin.horarios.update'])->syncRoles([$admin,$doctor,$secretaria]);
     Permission::create(['name' => 'admin.horarios.delete'])->syncRoles([$admin,$doctor,$secretaria]);
     Permission::create(['name' => 'admin.horarios.destroy'])->syncRoles([$admin,$doctor,$secretaria]);
+    
 
     //permisos en las rutas para los consultorios
     Permission::create(['name' => 'admin.consultorios.index'])->syncRoles([$admin,$doctor,$staff_de_ventas]);
@@ -115,6 +116,7 @@ class DatabaseSeeder extends Seeder
     Permission::create(['name' => 'admin.consultorios.update'])->syncRoles([$admin,$doctor,$staff_de_ventas]);
     Permission::create(['name' => 'admin.consultorios.delete'])->syncRoles([$admin,$doctor,$staff_de_ventas]);
     Permission::create(['name' => 'admin.consultorios.destroy'])->syncRoles([$admin,$doctor,$staff_de_ventas]);
+    
 
     //permisos en las rutas para los pacientes
     Permission::create(['name' => 'admin.pacientes.index'])->syncRoles([$admin,$secretaria]);

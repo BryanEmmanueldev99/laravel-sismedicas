@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 class HorarioController extends Controller
 {
     public function recuerar_consultorios($id) {
-           try {
-            
+           try {  
             $horarios = Horario::with('doctor','consultorio')->where('consultorio_id',$id)->get();
             return view('admin.horarios.cargar_consultorio', compact('horarios'));
            } catch (\Exception $e) {
