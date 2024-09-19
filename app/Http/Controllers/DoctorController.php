@@ -133,6 +133,8 @@ class DoctorController extends Controller
                 //no hagas nada
          }
          $usuario->save();
+         $usuario->assignRole('doctor');
+         
 
          return redirect()->route('admin.doctores.index')->with('status', 'Médico actualizado correctamente')->with('icono', 'success');
     }

@@ -30,6 +30,12 @@ Auth::routes();
 //rutas de la app para el administrador
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 
+//reservas de citas
+// Route::get('/admin/events', [App\Http\Controllers\EventController::class, 'index'])->name('admin.events.index')->middleware('auth');
+
+Route::post('/admin/events/create', [App\Http\Controllers\EventController::class, 'store'])->name('admin.events.create')->middleware('auth');
+
+
 //rutas de la app para el usuario
 Route::get('/admin/usuarios', [App\Http\Controllers\UsuarioController::class, 'index'])->name('admin.usuarios.index')->middleware('auth','can:admin.usuarios.index');
 

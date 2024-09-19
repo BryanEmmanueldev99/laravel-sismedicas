@@ -24,11 +24,15 @@ Inicio documento del HTML.
 <link rel="stylesheet" href="{{url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
-  
+
   <!--sweetalert-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- jQuery -->
   <script src=" {{url('plugins/jquery/jquery.min.js')}} "></script>
+  <!--Full calendar-->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+  <script src="{{asset('fullcalendar/es-us.global.js')}}"></script>
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
