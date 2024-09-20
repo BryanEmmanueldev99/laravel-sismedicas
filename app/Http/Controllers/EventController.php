@@ -78,11 +78,13 @@ class EventController extends Controller
           ->exists();
 
            //valida si el doctor tiene el horario y dia disponible
-          if(!$horarios){
-              throw ValidationException::withMessages([
-                  'hora_reserva'=>['El doctor no esta disponible en ese horario.']
-              ]);
-          }
+           if(!$horarios){
+            return redirect()->back()->with([
+                'mensaje' => 'El doctor no esta disponible en ese horario.',
+                'icono' => 'error',
+                'hora_reserva'=> 'El doctor no esta disponible en ese horario.',
+            ]);
+        }
 
           $fecha_hora_reserva = $fecha_reserva." ".$hora_reserva;
           //valida si no existe eventos duplicados
@@ -91,16 +93,24 @@ class EventController extends Controller
                                 ->exists();
           ;
 
-          if($eventos_duplicados){
-            throw ValidationException::withMessages([
-                'eventos_duplicados'=>['Ya existe una reserva con el mismo doctor en esa fecha y hora.']
+        // alternativa  if($eventos_duplicados){
+        //     throw ValidationException::withMessages([
+        //         'eventos_duplicados'=>['Ya existe una reserva con el mismo doctor en esa fecha y hora.']
+        //     ]);
+        //   }
+        if($eventos_duplicados){
+            return redirect()->back()->with([
+                'mensaje' => 'Ya existe una reserva con el mismo doctor en esa fecha y hora.',
+                'icono' => 'error',
+                'hora_reserva'=> 'Ya existe una reserva con el mismo doctor en esa fecha y hora.',
             ]);
-          }
+        }
 
         $event = new Event();
-        $event->title = $request->hora_reserva." ".$consultorio->nombre_consultorio; 
+        $event->title = $request->hora_reserva." ".$consultorio->nombre_consultorio;
         $event->start = $request->fecha_reserva." ".$hora_reserva;
         $event->end = $request->fecha_reserva." ".$hora_reserva;
+        $event->start_event_calendar = $request->fecha_reserva;	
         $event->color = $request->color;
         $event->user_id = 5;
         $event->doctor_id = $request->doctor_id;

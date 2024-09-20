@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->string('start_event_calendar');
             $table->string('color');
 
             //Relaciones

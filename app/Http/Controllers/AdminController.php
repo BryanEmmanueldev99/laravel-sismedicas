@@ -21,7 +21,7 @@ class AdminController extends Controller
          //datos requeridos para agendar cita médica
          $doctores = Doctor::all();
          $consultorios = Consultorio::all();
-         $events = Event::with('user','doctor','consultorio');
+         $eventos = Event::all();
 
         return view('admin.index', compact(
         'total_usuarios', 
@@ -29,7 +29,7 @@ class AdminController extends Controller
         'total_pacientes',
         'doctores',
         'consultorios',
-        'events'
+        'eventos'
       ));
     }
 }

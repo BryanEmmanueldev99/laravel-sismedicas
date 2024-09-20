@@ -56,38 +56,25 @@
    @if (($mensaje = Session::get('status')) && ($icon = Session::get('icono')))
                <script>
   Swal.fire({
-  position: "center",
+  position: "top-end",
   icon: "{{$icon}}",
   title: "{{$mensaje}}",
   showConfirmButton: false,
   timer: 2500
 });
                </script>
+   @elseif(($mensaje = Session::get('hora_reserva')) && ($icon = Session::get('icono')))
+   <script>
+    Swal.fire({
+    position:"top-end",
+    icon: "{{$icon}}",
+    title: "{{$mensaje}}",
+    showConfirmButton: false,
+    timer: 2500
+  });
+                 </script>
    @endif
 
-   @error('hora_reserva')
-   <script>
-      Swal.fire({
-      position: "center",
-      icon: "error",
-      title: "{{$message}}",
-      showConfirmButton: false,
-      timer: 2500
-    });
-                   </script>
-   @enderror 
-
-   @error('eventos_duplicados')
-   <script>
-      Swal.fire({
-      position: "center",
-      icon: "error",
-      title: "{{$message}}",
-      showConfirmButton: false,
-      timer: 2500
-    });
-   </script>
-   @enderror
    
    <div class="calendario mt-5">
       <div class="container">
@@ -107,7 +94,7 @@
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
-
+       
         <form action="{{route('admin.events.create')}}" method="post">
             @csrf
             <div class="modal-body">
@@ -124,7 +111,10 @@
    
                <div class="mb-3 form-group">
                   <label for="">Fecha de reserva</label>
-                  <input class="form-control" type="date" name="fecha_reserva" id="fecha_reserva">
+                  <input required class="form-control" type="date" name="fecha_reserva" id="fecha_reserva">
+                  @error('hora_reserva')
+                  <small class="red">{{$message}}</small>
+                @enderror
                   <script>
                      document.addEventListener('DOMContentLoaded',function (){
                          const fechaReservaInput=document.getElementById('fecha_reserva');
@@ -140,7 +130,7 @@
                                  this.value=null;
                                  //alert ('No se puede reservar en una fecha pasada.');          
             Swal.fire({
-            position: "center",
+            position: "top-end",
             icon: "error",
             title: "No se puede reservar en una fecha pasada.",
             showConfirmButton: false,
@@ -151,11 +141,18 @@
                          });
                      });
                  </script>
+                 @if (($mensaje = Session::get('hora_reserva')))
+                 <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                          $('#exampleModal').modal('show');
+                      });
+                 </script>
+          @endif
               </div>
    
               <div class="mb-3 form-group">
                 <label for="">Hora de reserva</label>
-                <input class="form-control" type="time" name="hora_reserva" id="hora_reserva">
+                <input required class="form-control" type="time" name="hora_reserva" id="hora_reserva">
                 @error('hora_reserva')
                   <small class="red">{{$message}}</small>
                 @enderror
@@ -173,7 +170,7 @@
                               this.value = null;
                               //alert('Porfavor ingrese un horario entre las 08:00 de la mañana y 20:00 de la tarde');
                               Swal.fire({
-            position: "center",
+            position: "top-end",
             icon: "error",
             title: "Porfavor ingrese un horario entre las 08:00 de la mañana y 20:00 de la tarde.",
             showConfirmButton: false,
@@ -223,26 +220,24 @@
  </div>
 
       </div>
-
       <div class="" id="calendar">
          <script>
+            cadena = new String("");
             document.addEventListener('DOMContentLoaded', function() {
               var calendarEl = document.getElementById('calendar');
               var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 locale: 'es',
                 events: [
+                  @foreach ($eventos as $evento)
                      {
-                        title: 'Odontologia',
-                        start: '2024-09-18',
-                        end: '2024-09-18'
+                      //{{\Carbon\Carbon::parse($evento->start)->format('y-m-d')}}
+                        title: '{{$evento->title}}',
+                        start: '{{ \Carbon\Carbon::parse($evento->start)->format('y-m-d')}}',
+                        end: '{{ \Carbon\Carbon::parse($evento->end)->format('y-m-d')}}',
+                        color: '{{$evento->color}}'
                      },
-                     {
-                        title: 'Pediatria',
-                        start: '2024-09-22',
-                        end: '2024-09-22',
-                        color: '#9370DB'
-                     }
+                  @endforeach
                 ]
               });
               calendar.render();
